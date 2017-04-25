@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_action_bar"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_back" />
+
+        <ImageView
+            android:id="@+id/imgIcon"
+            android:layout_width="@dimen/s_icon_app"
+            android:layout_height="@dimen/s_icon_app"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/btnBack"
+            android:src="@drawable/ic_icon_note" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imgIcon"
+            android:text="@string/app_name"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/s_app_name" />
+
+        <ImageView
+            android:id="@+id/btnSave"
+            android:layout_width="@dimen/s_icon"
+            android:layout_height="@dimen/s_icon"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_save" />
+
+        <ImageView
+            android:id="@+id/btnGrid"
+            android:layout_width="@dimen/s_icon"
+            android:layout_height="@dimen/s_icon"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/btnSave"
+            android:src="@drawable/ic_grid" />
+
+        <ImageView
+            android:id="@+id/btnCamera"
+            android:layout_width="@dimen/s_icon"
+            android:layout_height="@dimen/s_icon"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/btnGrid"
+            android:src="@drawable/ic_camera" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <FrameLayout
+            android:id="@+id/frameListPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:visibility="gone"></FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:text="@string/m_date"
+            android:textSize="@dimen/s_date" />
+
+        <EditText
+            android:id="@+id/edtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:hint="@string/m_Title"
+            android:textSize="@dimen/s_note"
+            android:textStyle="bold"
+            android:ellipsize="start"/>
+
+        <EditText
+            android:id="@+id/edtNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:hint="@string/m_note"
+            android:ellipsize="start"
+            android:textSize="@dimen/s_note" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/s_icon_app"
+                android:layout_height="@dimen/s_icon_app"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_alarm_black" />
+
+            <TextView
+                android:id="@+id/btnAlarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/m_alarm"
+                android:textSize="@dimen/s_note" />
+
+            <Spinner
+                android:id="@+id/spnDay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:visibility="gone"></Spinner>
+
+            <Spinner
+                android:id="@+id/spnTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:visibility="gone"></Spinner>
+
+            <ImageView
+                android:id="@+id/btnDeleteAlarm"
+                android:layout_width="@dimen/s_icon"
+                android:layout_height="@dimen/s_icon"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/ic_delete"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

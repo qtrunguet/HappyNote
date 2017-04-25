@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Happy Note</string>
+    <string name="m_date">05/04/2017 10:20</string>
+    <string name="m_Title">Title</string>
+    <string name="m_note">Note</string>
+    <string name="m_alarm">Alarm</string>
+</resources>
