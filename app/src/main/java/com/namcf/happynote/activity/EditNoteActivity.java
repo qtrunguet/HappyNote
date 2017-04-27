@@ -1,4 +1,4 @@
-package com.namcf.happynote;
+package com.namcf.happynote.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.namcf.happynote.R;
 
 /**
  * Created by admin on 4/25/2017.

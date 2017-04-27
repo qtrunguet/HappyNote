@@ -43,20 +43,11 @@
             android:textSize="@dimen/s_app_name" />
 
         <ImageView
-            android:id="@+id/btnOptions"
+            android:id="@+id/btnSave"
             android:layout_width="@dimen/s_icon"
             android:layout_height="@dimen/s_icon"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_option" />
-
-        <ImageView
-            android:id="@+id/btnSave"
-            android:layout_width="@dimen/s_icon"
-            android:layout_height="@dimen/s_icon"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:layout_toLeftOf="@+id/btnOptions"
             android:src="@drawable/ic_save" />
 
         <ImageView
@@ -83,47 +74,8 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/mControler"
         android:layout_below="@+id/mActionBar"></FrameLayout>
 
-    <LinearLayout
-        android:id="@+id/mControler"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/color_action_bar"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:weightSum="4">
-
-        <ImageView
-            android:id="@+id/btnPre"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/s_icon"
-            android:layout_weight="1"
-            android:src="@drawable/ic_back" />
-
-        <ImageView
-            android:id="@+id/btnShare"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/s_icon"
-            android:layout_weight="1"
-            android:src="@drawable/ic_share" />
-
-        <ImageView
-            android:id="@+id/btnDelete"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/s_icon"
-            android:layout_weight="1"
-            android:src="@drawable/ic_bin" />v
-
-        <ImageView
-            android:id="@+id/btnNext"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/s_icon"
-            android:layout_weight="1"
-            android:src="@drawable/ic_next" />s
-    </LinearLayout>
 
 
 </RelativeLayout>
