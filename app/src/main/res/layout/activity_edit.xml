@@ -79,15 +79,16 @@
 
     </RelativeLayout>
 
-    <FrameLayout
-        android:id="@+id/container"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/mControler"
-        android:layout_below="@+id/mActionBar"></FrameLayout>
+        android:layout_above="@+id/mController"
+        android:layout_below="@+id/mActionBar">
+    </android.support.v4.view.ViewPager>
 
     <LinearLayout
-        android:id="@+id/mControler"
+        android:id="@+id/mController"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"

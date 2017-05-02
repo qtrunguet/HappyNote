@@ -48,8 +48,8 @@ public class AddNoteActivity extends FragmentActivity {
         n.setNote(edtNote.getText().toString());
         n.setDate(date.getText().toString());
 
-        MainActivity.listNote.add(n);
-        MainActivity.adapter.notifyDataSetChanged();
+        MainActivity.addNote(n);
+        MainActivity.refreshList();
     }
 
     public void initNoteContent() {

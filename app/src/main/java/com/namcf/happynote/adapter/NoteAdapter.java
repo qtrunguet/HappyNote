@@ -20,6 +20,7 @@ public class NoteAdapter extends BaseAdapter{
 
     private Context context;
     private ArrayList<MyNote> listNote;
+    private ICallMain mICallMain;
 
     public NoteAdapter(Context context, ArrayList<MyNote> listNote) {
         this.context = context;
@@ -56,8 +57,9 @@ public class NoteAdapter extends BaseAdapter{
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listNote.remove(position);
-                notifyDataSetChanged();
+                if (mICallMain != null){
+                    mICallMain.deleteNote(position);
+                }
             }
         });
 
@@ -67,5 +69,13 @@ public class NoteAdapter extends BaseAdapter{
 
 
         return view;
+    }
+
+    public void setmICallMain(ICallMain mICallMain) {
+        this.mICallMain = mICallMain;
+    }
+
+    public interface ICallMain{
+        public void deleteNote(int pos);
     }
 }
