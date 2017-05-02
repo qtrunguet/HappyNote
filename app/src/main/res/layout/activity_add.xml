@@ -70,11 +70,12 @@
 
     </RelativeLayout>
 
-    <FrameLayout
-        android:id="@+id/container"
+    <include
+        android:id="@+id/noteContent"
+        layout="@layout/fragment_note"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/mActionBar"></FrameLayout>
+        android:layout_below="@+id/mActionBar"/>
 
 
 

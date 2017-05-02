@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.namcf.happynote.R;
 
@@ -15,10 +17,17 @@ import com.namcf.happynote.R;
 
 public class NoteFragment extends Fragment{
 
+    private TextView date;
+    private EditText edtTitle;
+    private EditText editNote;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_note, container, false);
+
+
+
 
         return view;
     }
