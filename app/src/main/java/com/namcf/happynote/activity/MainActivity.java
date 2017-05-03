@@ -9,7 +9,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.namcf.happynote.R;
-import com.namcf.happynote.adapter.NoteAdapter;
+import com.namcf.happynote.adapter.ListNoteAdapter;
 import com.namcf.happynote.objects.MyNote;
 import com.namcf.happynote.objects.RealmController;
 
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private GridView gridview;
 
     public static RealmController realmController;
-    public static NoteAdapter adapter;
+    public static ListNoteAdapter adapter;
     public static ArrayList<MyNote> listNote;
 
     @Override
@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void initGridView() {
         gridview = (GridView) findViewById(R.id.gridView);
-        adapter = new NoteAdapter(this, listNote);
-        adapter.setmICallMain(new NoteAdapter.ICallMain() {
+        adapter = new ListNoteAdapter(this, listNote);
+        adapter.setmICallMain(new ListNoteAdapter.ICallMain() {
             @Override
             public void deleteNote(int pos) {
                 realmController.removeNote(listNote.get(pos));

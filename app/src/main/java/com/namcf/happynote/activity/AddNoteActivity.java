@@ -6,18 +6,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
 import com.namcf.happynote.R;
-import com.namcf.happynote.adapter.NoteAdapter;
 import com.namcf.happynote.fragment.NoteFragment;
 import com.namcf.happynote.objects.MyNote;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import com.namcf.happynote.objects.ToolBarController;
 
 /**
  * Created by linuxlord on 4/26/17.
@@ -25,8 +22,7 @@ import java.util.Calendar;
 
 public class AddNoteActivity extends FragmentActivity {
 
-    private ImageView btnBack;
-    private ImageView btnSave;
+    private ImageView btnBack, btnSave, btnGrid, btnCamera;
     private Fragment fgNote;
 
     @Override
@@ -70,6 +66,16 @@ public class AddNoteActivity extends FragmentActivity {
                 }
                 addNote();
                 finish();
+            }
+        });
+
+        btnGrid = (ImageView) findViewById(R.id.btnGrid);
+        btnGrid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyNote myNote = ((NoteFragment)fgNote).getMyNote();
+                LinearLayout liner = ((NoteFragment)fgNote).getLayoutParent();
+                ToolBarController.selectColorLayout(AddNoteActivity.this, myNote, liner);
             }
         });
     }

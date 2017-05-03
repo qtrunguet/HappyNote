@@ -1,10 +1,12 @@
 package com.namcf.happynote.adapter;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.namcf.happynote.R;
@@ -16,13 +18,13 @@ import java.util.ArrayList;
  * Created by linuxlord on 4/27/17.
  */
 
-public class NoteAdapter extends BaseAdapter{
+public class ListNoteAdapter extends BaseAdapter{
 
     private Context context;
     private ArrayList<MyNote> listNote;
     private ICallMain mICallMain;
 
-    public NoteAdapter(Context context, ArrayList<MyNote> listNote) {
+    public ListNoteAdapter(Context context, ArrayList<MyNote> listNote) {
         this.context = context;
         this.listNote = listNote;
     }
@@ -53,6 +55,8 @@ public class NoteAdapter extends BaseAdapter{
         TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
         TextView tvNoteContent = (TextView) view.findViewById(R.id.tvNoteContent);
         TextView tvDate = (TextView) view.findViewById(R.id.tvDate);
+        LinearLayout liner = (LinearLayout) view.findViewById(R.id.linerItem);
+
         ImageView btnDelete = (ImageView) view.findViewById(R.id.btnDelete);
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +70,7 @@ public class NoteAdapter extends BaseAdapter{
         tvTitle.setText(listNote.get(position).getTitle());
         tvNoteContent.setText(listNote.get(position).getNote());
         tvDate.setText(listNote.get(position).getDate());
-
+        liner.setBackgroundColor(ContextCompat.getColor(context, listNote.get(position).getColor()));
 
         return view;
     }

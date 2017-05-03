@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="color_action_bar">#ff3385</color>
+
+    <color name="color_1">#66ff66</color>
+    <color name="color_2">#ff6666</color>
+    <color name="color_3">#ff80ff</color>
+    <color name="color_4">#ffff66</color>
 </resources>

@@ -3,12 +3,14 @@ package com.namcf.happynote.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,16 +26,17 @@ public class NoteFragment extends Fragment{
 
     public static String CLASS_NAME = "NoteFragment";
 
-    public TextView date;
-    public EditText edtTitle;
-    public EditText edtNote;
+    private TextView date;
+    private EditText edtTitle;
+    private EditText edtNote;
 
-    public Spinner spnDay, spnTime;
-    public TextView btnAlarm;
+    private Spinner spnDay, spnTime;
+    private TextView btnAlarm;
 
-    public ImageView btnDeleteAlarm;
+    private ImageView btnDeleteAlarm;
+    private LinearLayout liner;
 
-    public MyNote myNote;
+    private MyNote myNote;
 
     public NoteFragment(MyNote myNote) {
         this.myNote = myNote;
@@ -47,10 +50,12 @@ public class NoteFragment extends Fragment{
         date = (TextView) view.findViewById(R.id.tvDate);
         edtTitle = (EditText) view.findViewById(R.id.edtTitle);
         edtNote = (EditText) view.findViewById(R.id.edtNote);
+        liner = (LinearLayout) view.findViewById(R.id.linerNote);
 
         date.setText(myNote.getDate());
         edtTitle.setText(myNote.getTitle());
         edtNote.setText(myNote.getNote());
+        liner.setBackgroundColor(ContextCompat.getColor(getActivity(), myNote.getColor()));
 
         spnDay = (Spinner) view.findViewById(R.id.spnDay);
         spnTime = (Spinner) view.findViewById(R.id.spnTime);
@@ -79,7 +84,6 @@ public class NoteFragment extends Fragment{
     }
 
     public void onAlarm() {
-        DBG("onClickAlarm");
         btnAlarm.setVisibility(View.GONE);
         spnDay.setVisibility(View.VISIBLE);
         spnTime.setVisibility(View.VISIBLE);
@@ -109,7 +113,9 @@ public class NoteFragment extends Fragment{
 
         return true;
     }
-    public void DBG(String str) {
-        Log.d(CLASS_NAME, str);
+
+    public LinearLayout getLayoutParent(){
+        return liner;
     }
+
 }
