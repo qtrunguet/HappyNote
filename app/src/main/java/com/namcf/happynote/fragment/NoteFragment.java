@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.namcf.happynote.R;
 import com.namcf.happynote.objects.MyNote;
@@ -23,16 +24,16 @@ public class NoteFragment extends Fragment{
 
     public static String CLASS_NAME = "NoteFragment";
 
-    private TextView date;
-    private EditText edtTitle;
-    private EditText edtNote;
+    public TextView date;
+    public EditText edtTitle;
+    public EditText edtNote;
 
-    Spinner spnDay, spnTime;
-    TextView btnAlarm;
+    public Spinner spnDay, spnTime;
+    public TextView btnAlarm;
 
-    ImageView btnDeleteAlarm;
+    public ImageView btnDeleteAlarm;
 
-    private MyNote myNote;
+    public MyNote myNote;
 
     public NoteFragment(MyNote myNote) {
         this.myNote = myNote;
@@ -92,7 +93,22 @@ public class NoteFragment extends Fragment{
         btnDeleteAlarm.setVisibility(View.GONE);
     }
 
+    public MyNote getMyNote(){
+        String title = edtTitle.getText().toString();
+        myNote.setTitle(title.equals("") ? "UnTitle" : title);
+        myNote.setNote(edtNote.getText().toString());
+        myNote.setDate(date.getText().toString());
+        return myNote;
+    }
 
+    public boolean checkInput() {
+        if (edtNote.getText().toString().equals("")) {
+            Toast.makeText(getContext(), "Chua nhap noi dung!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
     public void DBG(String str) {
         Log.d(CLASS_NAME, str);
     }

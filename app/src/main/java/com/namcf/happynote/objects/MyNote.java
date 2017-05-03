@@ -1,5 +1,9 @@
 package com.namcf.happynote.objects;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -14,17 +18,22 @@ public class MyNote extends RealmObject{
     @PrimaryKey
     private int id;
 
-    private String title = "";
-    private String note = "";
-    private String date = "";
+    private String title;
+    private String note;
+    private String date;
+
+    public MyNote(){
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
+        String sDate = df.format(Calendar.getInstance().getTime());
+        this.date = sDate;
+        title = "";
+        note = "";
+    }
 
     public MyNote(String title, String note, String date) {
         this.title = title;
         this.note = note;
         this.date = date;
-    }
-
-    public MyNote() {
     }
 
     public String getTitle() {
