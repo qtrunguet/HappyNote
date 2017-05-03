@@ -3,10 +3,13 @@ package com.namcf.happynote.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.namcf.happynote.R;
@@ -18,9 +21,16 @@ import com.namcf.happynote.objects.MyNote;
 
 public class NoteFragment extends Fragment{
 
+    public static String CLASS_NAME = "NoteFragment";
+
     private TextView date;
     private EditText edtTitle;
     private EditText edtNote;
+
+    Spinner spnDay, spnTime;
+    TextView btnAlarm;
+
+    ImageView btnDeleteAlarm;
 
     private MyNote myNote;
 
@@ -41,6 +51,49 @@ public class NoteFragment extends Fragment{
         edtTitle.setText(myNote.getTitle());
         edtNote.setText(myNote.getNote());
 
+        spnDay = (Spinner) view.findViewById(R.id.spnDay);
+        spnTime = (Spinner) view.findViewById(R.id.spnTime);
+
+        edtNote = (EditText) view.findViewById(R.id.edtNote);
+        edtTitle = (EditText) view.findViewById(R.id.edtTitle);
+
+
+        btnDeleteAlarm = (ImageView) view.findViewById(R.id.btnDeleteAlarm);
+        btnDeleteAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                offAlarm();
+            }
+        });
+
+        btnAlarm = (TextView) view.findViewById(R.id.btnAlarm);
+        btnAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onAlarm();
+            }
+        });
+
         return view;
+    }
+
+    public void onAlarm() {
+        DBG("onClickAlarm");
+        btnAlarm.setVisibility(View.GONE);
+        spnDay.setVisibility(View.VISIBLE);
+        spnTime.setVisibility(View.VISIBLE);
+        btnDeleteAlarm.setVisibility(View.VISIBLE);
+    }
+
+    public void offAlarm() {
+        btnAlarm.setVisibility(View.VISIBLE);
+        spnDay.setVisibility(View.GONE);
+        spnTime.setVisibility(View.GONE);
+        btnDeleteAlarm.setVisibility(View.GONE);
+    }
+
+
+    public void DBG(String str) {
+        Log.d(CLASS_NAME, str);
     }
 }

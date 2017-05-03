@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 
@@ -71,6 +72,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initListNote();
+        refreshList();
+    }
+
     public void initGridView() {
         gridview = (GridView) findViewById(R.id.gridView);
         adapter = new NoteAdapter(this, listNote);
@@ -83,6 +91,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         gridview.setAdapter(adapter);
+
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent mIntent = new Intent(MainActivity.this, EditNoteActivity.class);
+                mIntent.putExtra("position", position);
+                startActivity(mIntent);
+            }
+        });
     }
 
     public static void addNote(MyNote myNote){

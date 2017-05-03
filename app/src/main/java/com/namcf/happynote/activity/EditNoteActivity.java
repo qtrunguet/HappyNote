@@ -1,28 +1,28 @@
 package com.namcf.happynote.activity;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.namcf.happynote.R;
+import com.namcf.happynote.adapter.MyViewPagerAdapter;
 
 /**
  * Created by admin on 4/25/2017.
  */
 
-public class EditNoteActivity extends Activity {
+public class EditNoteActivity extends FragmentActivity {
 
     static String CLASS_NAME = "EditNoteActivity";
 
-    ImageView btnDeleteAlarm,btnBack;
-    Spinner spnDay, spnTime;
-    EditText edtTitle, edtNote;
-    TextView btnAlarm;
+    ImageView btnBack, btnNext, btnDelete, btnShare, btnPre;
+
+    ViewPager viewPager;
+    MyViewPagerAdapter adapter;
 
     boolean onAlarm = false;
 
@@ -31,27 +31,27 @@ public class EditNoteActivity extends Activity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_edit);
 
+        this.initViewPager();
         this.init();
 
     }
 
+    public void initViewPager() {
+        Intent mIntent = getIntent();
+        int pos = mIntent.getExtras().getInt("position");
+
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        adapter = new MyViewPagerAdapter(getSupportFragmentManager(), MainActivity.listNote);
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(pos);
+    }
+
     public void init() {
-        btnDeleteAlarm = (ImageView) findViewById(R.id.btnDeleteAlarm);
         btnBack = (ImageView) findViewById(R.id.btnBack);
-
-        spnDay = (Spinner) findViewById(R.id.spnDay);
-        spnTime = (Spinner) findViewById(R.id.spnTime);
-
-        edtNote = (EditText) findViewById(R.id.edtNote);
-        edtTitle = (EditText) findViewById(R.id.edtTitle);
-
-        btnDeleteAlarm = (ImageView) findViewById(R.id.btnDeleteAlarm);
-        btnDeleteAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                offAlarm();
-            }
-        });
+        btnNext = (ImageView) findViewById(R.id.btnNext);
+        btnDelete = (ImageView) findViewById(R.id.btnDelete);
+        btnShare = (ImageView) findViewById(R.id.btnShare);
+        btnPre = (ImageView) findViewById(R.id.btnPre);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,32 +60,46 @@ public class EditNoteActivity extends Activity {
             }
         });
 
-        btnAlarm = (TextView) findViewById(R.id.btnAlarm);
-        btnAlarm.setOnClickListener(new View.OnClickListener() {
+        btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onAlarm();
+                int id = viewPager.getCurrentItem();
+                if (id == MainActivity.listNote.size() - 1 ){
+                    id  = 0;
+                }else {
+                    id ++;
+                }
+                viewPager.setCurrentItem(id);
             }
         });
-    }
 
-    public void onAlarm() {
-        DBG("onClickAlarm");
-        btnAlarm.setVisibility(View.GONE);
-        spnDay.setVisibility(View.VISIBLE);
-        spnTime.setVisibility(View.VISIBLE);
-        btnDeleteAlarm.setVisibility(View.VISIBLE);
-    }
+        btnPre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id = viewPager.getCurrentItem();
+                if (id == 0){
+                    id  = MainActivity.listNote.size() - 1 ;
+                }else {
+                    id --;
+                }
+                viewPager.setCurrentItem(id);
+            }
+        });
 
-    public void offAlarm() {
-        btnAlarm.setVisibility(View.VISIBLE);
-        spnDay.setVisibility(View.GONE);
-        spnTime.setVisibility(View.GONE);
-        btnDeleteAlarm.setVisibility(View.GONE);
-    }
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id = viewPager.getCurrentItem();
+                MainActivity.realmController.removeNote(MainActivity.listNote.get(id));
+                finish();
+            }
+        });
 
-
-    public void DBG(String str) {
-        Log.d(CLASS_NAME, str);
+        btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(EditNoteActivity.this, "Share cai cc", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

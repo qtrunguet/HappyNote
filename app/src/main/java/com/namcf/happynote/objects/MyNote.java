@@ -14,9 +14,9 @@ public class MyNote extends RealmObject{
     @PrimaryKey
     private int id;
 
-    private String title;
-    private String note;
-    private String date;
+    private String title = "";
+    private String note = "";
+    private String date = "";
 
     public MyNote(String title, String note, String date) {
         this.title = title;
