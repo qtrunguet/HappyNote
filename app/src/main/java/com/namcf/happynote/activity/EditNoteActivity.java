@@ -2,14 +2,19 @@ package com.namcf.happynote.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.namcf.happynote.R;
 import com.namcf.happynote.adapter.MyViewPagerAdapter;
+import com.namcf.happynote.fragment.NoteFragment;
+import com.namcf.happynote.objects.MyNote;
+import com.namcf.happynote.objects.ToolBarController;
 
 /**
  * Created by admin on 4/25/2017.
@@ -20,6 +25,7 @@ public class EditNoteActivity extends FragmentActivity {
     static String CLASS_NAME = "EditNoteActivity";
 
     ImageView btnBack, btnNext, btnDelete, btnShare, btnPre;
+    ImageView btnGrid;
 
     ViewPager viewPager;
     MyViewPagerAdapter adapter;
@@ -32,7 +38,8 @@ public class EditNoteActivity extends FragmentActivity {
         this.setContentView(R.layout.activity_edit);
 
         this.initViewPager();
-        this.init();
+        this.initController();
+        this.initToolBar();
 
     }
 
@@ -46,7 +53,17 @@ public class EditNoteActivity extends FragmentActivity {
         viewPager.setCurrentItem(pos);
     }
 
-    public void init() {
+    public void initToolBar(){
+        btnGrid = (ImageView) findViewById(R.id.btnGrid);
+        btnGrid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO
+            }
+        });
+    }
+
+    public void initController() {
         btnBack = (ImageView) findViewById(R.id.btnBack);
         btnNext = (ImageView) findViewById(R.id.btnNext);
         btnDelete = (ImageView) findViewById(R.id.btnDelete);
